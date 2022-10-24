@@ -104,16 +104,31 @@ let numbersX = [5, 9, 3, 19, 70, 8, 100, 2, 35, 27];
 for (let index = 1; index < numbersX.length; index += 1) {
     for (let secondIndex = 0; secondIndex < index; secondIndex += 1) {
       if (numbersX[index] < numbersX[secondIndex]) {
-        let posicaoDoNumero = numbersX[index];
-        array[index] = array[secondIndex];
-        array[secondIndex] = posicaoDoNumero;
+        let posicao = numbersX[index];
+        numbersX[index] = numbersX[secondIndex];
+        numbersX[secondIndex] = posicao;
       }
     }
   }
 console.log(numbersX);
 
+// outro método - método sort
+
+numbersX.sort((a, b)=>a-b);
+console.log(numbersX);
+
 //exercicio bonus 2
 
+numbersX = [5, 9, 3, 19, 70, 8, 100, 2, 35, 27];
+let newArrayN = [];
 
-
+for (let index = 0; index < numbersX.length; index += 1) {
+        if (index+1<numbersX.length) {
+            newArrayN.push(numbersX[index]*numbersX[index+1]);
+        }
+        else {
+            newArrayN.push(numbersX[index]*2);
+        }
+    }
+console.log(newArrayN);
 
