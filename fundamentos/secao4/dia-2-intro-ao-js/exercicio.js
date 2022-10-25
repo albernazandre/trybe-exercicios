@@ -8,7 +8,7 @@ for (let index=0;index<numbers.length;index++) {
     console.log(numbers[index]);
 }
 
-//exercicio 2
+//exercicio 2 - soma de um array
 
 let soma = 0;
 for (let index=0;index<numbers.length;index++) {
@@ -17,13 +17,13 @@ for (let index=0;index<numbers.length;index++) {
 console.log(soma);
 
 
-//exercicio 3
+//exercicio 3 - média de um array
 
 let media;
 media = soma/numbers.length
 console.log(media);
 
-//exercicio 4
+//exercicio 4 - retorna se maior ou menor que 20
 
 for (let index=0;index<numbers.length;index++) {
     if (numbers[index]>20){
@@ -34,7 +34,7 @@ for (let index=0;index<numbers.length;index++) {
     }
 }
 
-//exercicio 5
+//exercicio 5 - maior valor num array
 
 let maiorValor=0;
 for (let index=0;index<numbers.length;index++) {
@@ -44,7 +44,7 @@ if (numbers[index]>maiorValor){
 }
 console.log(maiorValor);
 
-//exercicio 6
+//exercicio 6 - quantidade de impares num array
 
 let quantImpar=0;
 for (let index=0;index<numbers.length;index++) {
@@ -58,8 +58,9 @@ if (quantImpar===0){
 }
 
 
-//exercicio 7
-const maxInt=999999999999999999999999999;
+//exercicio 7 - Menor valor num array
+
+const maxInt=numbers[0];
 let menorValor=maxInt;
 for (let index=0;index<numbers.length;index++) {
     if (numbers[index]<menorValor){
@@ -131,4 +132,6 @@ for (let index = 0; index < numbersX.length; index += 1) {
         }
     }
 console.log(newArrayN);
+
+
 
