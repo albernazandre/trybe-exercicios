@@ -321,7 +321,6 @@ for (let index = 0; index < moradores.blocoUm.length; index += 1) { //loop que p
 }
 
 
-//letra c
 
 
 
