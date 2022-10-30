@@ -167,3 +167,166 @@ function verificaFimPalavra(palavra, fimPalavra) {
 
 console.log(verificaFimPalavra('trybe', 'try')); //true
 console.log(verificaFimPalavra('joaofernando', 'nando')); //false
+
+
+
+//exercicios bonus 1 - funcao para ler algarismos romanos
+
+const numerosRomanos = { //objeto que guarda valores correspondentes aos algarismos romanos
+  i: 1,
+  v: 5,
+  x: 10,
+  l: 50,
+  c: 100,
+  d: 500,
+  m: 1000,
+};
+function romanoParaDecimal(numero) { 
+  numero = numero.toLowerCase(); //deixa os algarismos romanos em minusculo e assim não tem problema de case sensitive
+  const len = numero.length; //variavel para capturar o tamanho da string
+  let soma = numerosRomanos[numero[len - 1]]; //variável que receberá o valor final da função, vai iniciar com o valor do último algarismo romano
+  let atual = numerosRomanos[numero[len - 1]];//variável auxiliar no loop que incia também com o último alarismo romano
+
+  for (let i = 2; i <= len; i += 1) {//loop inicia no 2, ou seja, posição 3
+    const prox = numerosRomanos[numero[len - i]];//vai armazenar os valores anteriores a posicao 2
+
+    if (atual <= prox) {//Caso atual seja menor ou igual a prox, soma deve somar seu valor com prox. Caso contrário, soma deve subtrair com prox
+      soma += prox;
+    } else {
+      soma -= prox;
+    }
+
+    atual = prox;
+  }
+
+  return soma;
+}
+
+console.log(romanoParaDecimal('MMXVIII')); // 2018
+console.log(romanoParaDecimal('VI')); // 6
+console.log(romanoParaDecimal('IV')); // 4
+
+
+
+//exercicio bonus 3
+
+
+function arrayOfNumbers(vector) {
+  const result = [];
+
+  for (let index = 0; index < vector.length; index += 1) {
+    if (vector[index]%2===0 && vector[index] > 0){
+      result.push(vector[index]);
+    }
+    
+  }
+
+  return result;
+
+}
+
+console.log(arrayOfNumbers([2, 3, 4, 5, 6, 7, 8]));
+
+
+
+//exercicio bonus 3
+
+
+const basket = [
+  'Melancia', 'Abacate', 'Melancia', 'Melancia', 'Uva', 'Laranja',
+  'Jaca', 'Pera', 'Melancia', 'Uva', 'Laranja', 'Melancia',
+  'Banana', 'Uva', 'Pera', 'Abacate', 'Laranja', 'Abacate',
+  'Banana', 'Melancia', 'Laranja', 'Laranja', 'Jaca', 'Uva',
+  'Banana', 'Uva', 'Laranja', 'Pera', 'Melancia', 'Uva',
+  'Jaca', 'Banana', 'Pera', 'Abacate', 'Melancia', 'Melancia',
+  'Laranja', 'Pera', 'Banana', 'Jaca', 'Laranja', 'Melancia',
+  'Abacate', 'Abacate', 'Pera', 'Melancia', 'Banana', 'Banana',
+  'Abacate', 'Uva', 'Laranja', 'Banana', 'Abacate', 'Uva',
+  'Uva', 'Abacate', 'Abacate', 'Melancia', 'Uva', 'Jaca',
+  'Uva', 'Banana', 'Abacate', 'Banana', 'Uva', 'Banana',
+  'Laranja', 'Laranja', 'Jaca', 'Jaca', 'Abacate', 'Jaca',
+  'Laranja', 'Melancia', 'Pera', 'Jaca', 'Melancia', 'Uva',
+  'Abacate', 'Jaca', 'Jaca', 'Abacate', 'Uva', 'Laranja',
+  'Pera', 'Melancia', 'Jaca', 'Pera', 'Laranja', 'Jaca',
+  'Pera', 'Melancia', 'Jaca', 'Banana', 'Laranja', 'Jaca',
+  'Banana', 'Pera', 'Abacate', 'Uva',
+];
+
+const result = {}; //objeto que vai serar frutas e quantidade
+
+for (let index = 0; index < basket.length; index += 1) { //loop que percorre array de frutas
+  const fruit = basket[index]; //variavel auxiliar que vai receber valores do array de frutas
+  if (!result[fruit]) result[fruit] = 0; //se o resultado nao estiver dentro do array, o resultado é zero, caso contrário incrementa 1
+  result[fruit] += 1;
+}
+
+const summaries = []; //variavel array que vai recerber as mensagens de quantas frutas de cada especie ha no cesto
+
+for (fruit in result) { //loop que vai percorrer o objeto result
+  let message = `${result[fruit]} ${fruit}`; //variavel auxiliar que forma a mensagem, result[fruit] é a propriedade com o numero de frutas
+  if (result[fruit] > 1) message += 's'; //adiciona o 's' quando houver mais de uma especie de fruta
+  summaries.push(message); //o array vai puxas 'x frutas' de cada especie
+}
+
+console.log(`Sua cesta possui: ${summaries.join(', ')}.`); //console log com a mensagem pretendida
+
+
+//exercicio bonus 4
+
+
+let moradores = {
+  blocoUm: [
+    {
+      nome: 'Luiza',
+      sobrenome: 'Guimarães',
+      andar: 10,
+      apartamento: 1005,
+    },
+    {
+      nome: 'William',
+      sobrenome: 'Albuquerque',
+      andar: 5,
+      apartamento: 502,
+    },
+  ],
+  blocoDois: [
+    {
+      nome: 'Murilo',
+      sobrenome: 'Ferraz',
+      andar: 8,
+      apartamento: 804,
+    },
+    {
+      nome: 'Zoey',
+      sobrenome: 'Brooks',
+      andar: 1,
+      apartamento: 101,
+    },
+  ],
+};
+
+
+//letra a
+
+let moradoresBlocoDois = moradores.blocoDois;
+let ultimoMoradorBlocoDois = moradoresBlocoDois[moradoresBlocoDois.length - 1];
+console.log(`O morador do bloco 2 de nome ${ultimoMoradorBlocoDois.nome} ${ultimoMoradorBlocoDois.sobrenome} mora no ${ultimoMoradorBlocoDois.andar}º andar, apartamento ${ultimoMoradorBlocoDois.apartamento}`);
+
+
+//letra b
+
+
+for (let index = 0; index < moradores.blocoUm.length; index += 1) { //loop que passa pelo objeto dos moradores do bloco um
+  console.log(moradores.blocoUm[index].nome + ' ' + moradores.blocoUm[index].sobrenome); //acessando todos s nomes e sobrenomes atraves do loop com o [index] 
+}
+
+
+//letra c
+
+
+
+
+
+
+
+
