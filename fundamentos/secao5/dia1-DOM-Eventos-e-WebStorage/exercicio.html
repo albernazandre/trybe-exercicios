@@ -58,12 +58,13 @@
       6. Crie e execute uma função que exiba o conteúdo de todas as tags <p> no console.
       */
      
-     
+     //ex 1
       function changeText () {  
       document.getElementById("visao").innerText="Eu me vejo formado e trabalhando."
       };
       changeText();
 
+      //ex 2
 
       const changeSquareToGreen = () => {
       let square = document.getElementsByClassName('main-content')[0];
@@ -71,13 +72,41 @@
       }
       changeSquareToGreen();
 
-      const changeSquareToWhite = () => {
-        let square = document.getElementsByClassName('center-content')[0];
-        square.style.background="white";
-      }
-      changeSquareToWhite;
+      //ex 3
 
-      
+      const changeSquareToWhite = () => {
+        let squareRed = document.getElementsByClassName('center-content')[0];
+        squareRed.style.background="white";
+      }
+      changeSquareToWhite();
+
+      //ex 4
+
+      const correctTitle = () => {
+        let title = document.getElementsByTagName('h1')[0];
+        title.innerHTML = "Exercício 5.1 - JS";
+      }
+      correctTitle();
+
+
+        //ex 5
+
+        function paragraphUpperCase() {
+            let paragraph = document.getElementsByTagName('p')[0];
+            paragraph.innerHTML = paragraph.innerHTML.toUpperCase();
+        }
+        paragraphUpperCase();
+
+        //ex 6
+
+        const showParagraphs = () => {
+            let paragraphs = document.getElementsByTagName('p');
+                for (let index = 0; index < paragraphs.length; index += 1) {
+                    console.log(paragraphs[index].innerHTML);
+                } 
+        }
+        showParagraphs();
+
 
     </script>
 
