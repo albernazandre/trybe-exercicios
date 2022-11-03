@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Exercício</title>
+    <style>
+      section {
+        border-color: black;
+        border-style: solid;
+      }
+
+      .title {
+        text-align: center;
+      }
+
+      .main-content {
+        background-color: yellow;
+      }
+
+      .main-content .center-content {
+        background-color: red;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .main-content .center-content p {
+        font-style: italic;
+      }
+
+      .main-content .left-content {
+        background-color: green;
+        width: 60%;
+        margin-left: 0;
+        margin-right: auto;
+      }
+
+      .main-content .left-content .small-image {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 100%;
+      }
+
+      .main-content .right-content {
+        background-color: blue;
+        width: 60%;
+        margin-left: auto;
+        margin-right: 0;
+      }
+
+      .main-content .description {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+
+
+
+    <script>
+      //exercicio 1
+
+      const titulo1 = document.querySelector('body');
+      const textoH1 = "Exercício - JavaScript DOM";
+      const title1 = document.createElement('h1');
+      title1.innerText = textoH1;
+      titulo1.appendChild(title1);
+
+      //exercicio 2
+
+      const main1 = document.querySelector('body');
+      const main = document.createElement('main');
+      main.classList.add('main-content');
+      main1.appendChild(main);
+
+      //exercicio 3
+       
+      const section1 = document.querySelector('main'); 
+      const section = document.createElement('section');
+      section.classList.add('center-content');
+      section1.appendChild(section);
+
+      //exercicio 4
+
+      const p1 = document.querySelector('section'); 
+      const parag = document.createElement('p');
+      parag.innerHTML="O maior clube do Brasil é o Atlético-MG"
+      p1.appendChild(parag);
+
+      //exercicio 5
+
+      const section2 = document.querySelector('main'); 
+      const sectionLeft = document.createElement('section');
+      sectionLeft.classList.add('left-content');
+      section2.appendChild(sectionLeft);
+
+      //exercicio 6
+
+      const section3 = document.querySelector('main'); 
+      const sectionRight = document.createElement('section');
+      sectionRight.classList.add('right-content');
+      section3.appendChild(sectionRight);
+
+      //exercicio 7
+
+     
+      const imageLeft = document.createElement('img');
+      imageLeft.classList.add('small-image');
+      imageLeft.src = 'https://picsum.photos/200';
+      sectionLeft.appendChild(imageLeft);
+
+      //exercicio 8
+
+      const arrayNumExtenso = ['one', 'dois', 'três', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove', 'dez'];
+      const ulOneToTen = document.createElement('ul');
+      sectionRight.appendChild(ulOneToTen);
+
+      for (let index = 0; index < arrayNumExtenso.length; index += 1) {
+        let arrayDaLista = arrayNumExtenso[index];
+        let itensDaLista = document.createElement('li');
+        itensDaLista.innerHTML = arrayDaLista;
+        ulOneToTen.appendChild(itensDaLista);
+      }
+
+      //exercicio 9
+
+      for (let index = 1; index <= 3; index += 1) {
+        let elementH3 = document.createElement('h3');
+        elementH3.innerHTML = 'Show ' + index;
+        main.appendChild(elementH3);
+      }
+      
+      //exercicio 10
+
+      title1.classList.add('title');
+
+      //exercicio 11
+
+      //elementH3.classList.add('description');
+
+      //exercicio 12
+
+      const removeSectionLeft = document.getElementsByClassName('left-content')[0];
+      main.removeChild(removeSectionLeft);
+
+      //exercicio 13
+
+      const sectionRightS = document.getElementsByClassName('right-content')[0];
+      sectionRightS.style.marginRight='auto';
+
+      //exercicio 14
+
+      const sectionCenterC = document.getElementsByClassName('center-content')[0];
+      sectionCenterC.parentNode.style.backgroundColor = 'green';
+
+      //exercicio 15
+       
+      const ul = document.getElementsByTagName('ul')[0];
+      ul.lastChild.remove();
+      ul.lastChild.remove();
+
+
+
+    </script>
+  </body>
+</html>
+
+
