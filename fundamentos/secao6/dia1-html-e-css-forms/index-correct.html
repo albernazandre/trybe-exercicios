@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+        <h1>Formulário para cadastro de currículo <h1>
+        <form>    
+        <fieldset>
+            <label for="fullName">Nome Completo:</label>
+            <input type="text" id="fullName" name="fullName" placeholder="Digite seu nome completo" maxlength="40" minlength="10" required><!--campo requerido-->     
+            <br>
+            <label for="email">Endereço de e-mail:</label>
+            <input type="email" id="email" name="email" placeholder="Digite seu e-mail" maxlength="50"   minlength="10" required><!--campo requerido-->
+            <br>
+            <label for="destination1">Cidade</label>
+            <input type="radio" id="destination1" className="radios" name="destinations" value="Cidade" required><!--campo requerido-->
+            <label for="destination2">Campo</label>
+            <input type="radio" id="destination2" className="radios" name="destinations" value="Campo" required><!--campo requerido-->
+            <label for="destination3">Praia</label>
+            <input type="radio" id="destination3" className="radios" name="destinations" value="Praia" required><!--campo requerido-->
+            <label for="destination4">Montanhas</label>
+            <input type="radio" id="destination4" className="radios" name="destinations" value="Montanhas" required><!--campo requerido-->
+            <br>
+            <label for="why">Por que você deveria ser a pessoa desenvolvedora escolhida pelo concurso TrybeTrip? </label>
+            <br />
+            <textarea name="why" id="why" cols="60" rows="10" placeholder="Digite sua resposta vencedora aqui"></textarea>
+            <br />
+            <label for="date">Qual a melhor data para realizar sua viagem?</label>
+            <input type="date" id="date">
+            <br />
+            <label for="promo">Gostaria de receber outras incríveis oportunidades oferecidas pela Trybe. </label>
+            <input type="checkbox" name="promo" id="promo">
+            <br />
+            <label for="agreement">Concordo que imagens de minhas férias poderão ser usadas na divulgação de concursos futuros.</label>
+            <input type="checkbox" name="agreement" id="agreement" required>
+        </fieldset>
+        <button type="submit" id="submit-btn">Participar do concurso TrybeTrip</button>
+        <button type="button" id="clear-btn">Apagar informações</button>
+        </form>
+        <script>
+            
+            function handleSubmit(event) {
+                event.preventDefault();//prevenindo comportamento padrão
+                const validation = textInputValidation();//variavel auxiliar que vai selecionar a funcao que valida o botao submit (casos em que valerá ounão o submit)
+                if (validation === false) {//se a funcao capturada pela variavel validation retornar false, aparece um alerta de dados invalidos
+                    alert('Dados inválidos');
+                } else {//caso contrario, dados enviados com sucesso
+                    alert('Dados enviados com sucesso! Obrigado por participar do concurso TrybeTrip.');
+                }
+            }       
+
+            window.onload = function() {//window onload quer dizer que que queremos disparar a funcao, a qual contém determinados eventos, somente quando a pagina estiver carregada
+                const clearBtn = document.querySelector('#clear-btn');
+                clearBtn.addEventListener('click', clearFields);//funcao de apagar conteudo ao clicar no botao de limpar
+                const submitBtn = document.querySelector('#submit-btn');
+                submitBtn.addEventListener('click', handleSubmit);//funcao do submit button
+                const agreement = document.querySelector('#agreement');
+                agreement.addEventListener('change', enableSubmit);//funcao responsavel por habilitar o submit referente ao campo checked obrigatorio
+            };
+            function clearFields() {//funcao que limpa o forms. Coloca como valor do input 'nada' e como valor das opcoes checadas 'false'
+                const formElements = document.querySelectorAll('input');
+                const textArea = document.querySelector('textarea');
+                for (let index = 0; index < formElements.length; index += 1) {
+                    const userInput = formElements[index];
+                    userInput.value = '';
+                    userInput.checked = false;
+                }
+            textArea.value = '';
+            }
+            function enableSubmit() {
+                const submitBtn = document.querySelector('#submit-btn');
+                const agreement = document.querySelector('#agreement');
+                submitBtn.disabled = !agreement.checked; //botao de submit fica disabled se o agreement nao estiver checado
+            }
+
+
+            function textInputValidation() {
+                const email = document.querySelector('#email').value.length;
+                const invalidEmail = email < 10 || email > 50;
+
+                const name = document.querySelector('#fullName').value.length;
+                const invalidName = name < 10 || name > 40;
+
+                const reason = document.querySelector('#why').value.length;
+                const invalidReason = reason > 500;
+                
+                if (invalidEmail || invalidName || invalidReason) {
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            }
+            
+
+        </script>
+      
+</body>
+</html>
