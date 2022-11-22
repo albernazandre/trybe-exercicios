@@ -5,8 +5,6 @@ describe ('teste se funcao fizzBuzz funciona', () => {
         expect(myFizzBuzz(9)).toEqual('fizz');
         expect(myFizzBuzz(25)).toEqual('buzz');
         expect(myFizzBuzz(11)).toEqual(11);
-        });
-    it ('verifica se num é um numero', () => {
         expect(myFizzBuzz('12')).toEqual(false);
     });
     });
