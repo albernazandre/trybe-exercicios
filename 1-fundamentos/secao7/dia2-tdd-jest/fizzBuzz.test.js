@@ -1,4 +1,4 @@
-const myFizzBuzz = require ('./script2');
+const myFizzBuzz = require ('./fizzBuzz');
 describe ('teste se funcao fizzBuzz funciona', () => {
     it ('verifica retorno', () => {
         expect(myFizzBuzz(15)).toEqual('fizzbuzz');

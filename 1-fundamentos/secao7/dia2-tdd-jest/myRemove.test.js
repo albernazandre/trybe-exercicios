@@ -9,7 +9,7 @@
   }*/
 
 
-const myRemove = require ('./script1');
+const myRemove = require ('./myRemove');
 
 describe ('teste se ocorrerá retorno esperado', () => {
     

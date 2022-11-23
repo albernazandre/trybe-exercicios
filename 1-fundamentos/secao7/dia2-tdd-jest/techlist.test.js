@@ -1,4 +1,4 @@
-const techList = require('./script4.js');
+const techList = require('./techlist.js');
 
 describe('Testa a função techList', () => {
   it('Testa se a função techList é definida', () => {
@@ -35,5 +35,3 @@ describe('Testa a função techList', () => {
     expect(techList([], 'Lucas')).toBe('Vazio!');
   });
 });
-
-module.exports = techList;
