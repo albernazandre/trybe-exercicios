@@ -13,3 +13,4 @@ describe('Exercício de teste seção 7.3', () => {
     expect(printMessage('Margarida')).toThrow('objeto inválido');
   });
 })
+   
