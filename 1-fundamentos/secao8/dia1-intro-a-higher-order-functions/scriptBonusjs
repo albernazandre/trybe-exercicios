@@ -1,0 +1,104 @@
+//Desenvolvendo um game de fantasia
+
+const mage = {
+  healthPoints: 130,
+  intelligence: 45,
+  mana: 125,
+  damage: undefined,
+};
+
+const warrior = {
+  healthPoints: 200,
+  strength: 30,
+  weaponDmg: 2,
+  damage: undefined,
+};
+
+const dragon = {
+  healthPoints: 350,
+  strength: 50,
+  damage: undefined,
+};
+
+const battleMembers = { mage, warrior, dragon };
+
+
+// funcao que retorna dano do dragao e outra que retorna dano do warrior
+
+const dragonAttack = (dragon) => {
+    const minDamage = 15;
+    const maxDamage = Math.floor(Math.random() * dragon.strength);
+    const dragonDmg = maxDamage > minDamage ? maxDamage : minDamage; // caso max maior que min retorne maxDamage, caso isso seja falso, retorne minDamage
+
+  return dragonDmg;
+}
+
+const warriorAttack = (warrior) => {
+    const minDamage = warrior.strength;
+    const maxDamage = Math.floor(Math.random() * (minDamage * warrior.weaponDmg));
+    const warriorDmg = maxDamage > minDamage ? maxDamage : minDamage;
+    
+    return warriorDmg;
+}
+
+/* funcao que retorna um objeto com duas chaves 
+e dois valores contendo o dano e a mana gasta pelo mago em um turno
+
+O dano será um número aleatório entre o valor do atributo intelligence (dano mínimo) e o 
+valor de intelligence * 2 (dano máximo).
+A mana consumida por turno é 15. Além disso, a função deve ter 
+uma condicional: caso o mago tenha menos de 15 de mana, o valor de dano recebe uma 
+mensagem (Ex: “Não possui mana suficiente”), e a mana gasta é 0.*/
+
+const mageAttack = (mage) => {
+    const mageMana = mage.mana; 
+    const minDamage = mage.intelligence;
+    const maxDamage = mage.intelligence * 2
+    const turnStats = {
+        manaSpent: 0,
+        damageDealt: 'Não possui mana suficiente...'
+    }
+    if (mageMana > 15) {
+        const mageDmg = minDamage < maxDamage ? maxDamage : minDamage;
+        turnStats.manaSpent = 15;
+        turnStats.damageDealt = mageDmg;
+        return turnStats;
+    }
+    return turnStats;
+}
+
+
+/*Crie a primeira HOF que compõe o objeto gameActions.
+Devemos criar um objeto game actions que terá o turno 
+do guerreiro com uma função. O parâmetro passado deverá ser nossa callback 
+de dano do guerreiro. Dentro dela, executamos a função passando um objeto que 
+representa o guerreiro. Subtraímos de dragon.healthPoints o resultado de warriorAttack. 
+Por fim, vamos atribuir o dano a uma chave de dano do warrior. Assim, podemos 
+trabalhar com estatísticas do turno depois.*/
+
+const gameActions = {
+    warriorTurn: (warriorAttack) => { //objeto que representa após um turno de ataque do warrior
+      const warriorDamage = warriorAttack(warrior);
+      warrior.damage = warriorDamage; //o damage do warrior se mantém
+      dragon.healthPoints -= warriorDamage; //dragon sofre danos correspondentes ao ataque do warrior
+    },
+    mageTurn: (mageAttack) => {
+      const mageTurnStats = mageAttack(mage);
+      const mageDamage = mageTurnStats.damageDealt;
+      mage.damage = mageDamage;
+      mage.mana -= mageTurnStats.manaSpent; // o mana do mage diminui após o seu ataque
+      dragon.healthPoints -= mageDamage; // dragon sofre dano correspondentes ao ataque do mage
+    },
+    dragonTurn: (dragonAttack) => {
+      const dragonDamage = dragonAttack(dragon);
+      mage.healthPoints -= dragonDamage; //mage sofre danos correspondentes ao ataque do dragon
+      warrior.healthPoints -= dragonDamage; //warrior sofre danos correspondentes ao ataque do dragon
+      dragon.damage = dragonDamage;
+    },
+    turnResults: () => battleMembers, // battlemembers(mage, warrior, dragon)
+  };
+  
+  gameActions.warriorTurn(warriorAttack); //chama a rodada de cada um dos personagens
+  gameActions.mageTurn(mageAttack);
+  gameActions.dragonTurn(dragonAttack);
+  console.log(gameActions.turnResults()); //turn results traz o resultado sobre cada objeto que representam os personagens
